@@ -12,15 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelGuide"
         tools:targetApi="31">
-        <activity
-            android:name=".LoginPage"
+
+        <!-- Main activity that launches the app -->
+        <activity android:name=".LoginSignupPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Login page activity -->
+        <activity android:name=".LoginPage"
+            android:exported="true" />
+
+        <!-- Sign up page activity -->
+        <activity android:name=".SignUpPage"
+            android:exported="true" />
+
     </application>
 
 </manifest>

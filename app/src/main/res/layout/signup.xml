@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B5EDED"
+    android:padding="16dp">
+
+    <!-- Logo Image -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="40dp" />
+
+    <!-- Title Text -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TRIP HUNTER"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#00796B"
+        android:fontFamily="@font/inter_bold"
+        android:layout_below="@id/logoImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <!-- Subtitle Text -->
+    <TextView
+        android:id="@+id/subtitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hunt down your next Getaway"
+        android:textSize="14sp"
+        android:textColor="#00796B"
+        android:layout_below="@id/titleText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+
+    <!-- Input Fields -->
+    <EditText
+        android:id="@+id/firstNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="First Name"
+        android:background="@drawable/rounder_edittext"
+        android:padding="10dp"
+        android:layout_below="@id/subtitleText"
+        android:layout_marginTop="20dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/surnameInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Surname"
+        android:background="@drawable/rounder_edittext"
+        android:padding="10dp"
+        android:layout_below="@id/firstNameInput"
+        android:layout_marginTop="10dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Email"
+        android:background="@drawable/rounder_edittext"
+        android:padding="10dp"
+        android:layout_below="@id/surnameInput"
+        android:layout_marginTop="10dp"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/phoneNumberInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Phone Number"
+        android:background="@drawable/rounder_edittext"
+        android:padding="10dp"
+        android:layout_below="@id/emailInput"
+        android:layout_marginTop="10dp"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Set Password"
+        android:background="@drawable/rounder_edittext"
+        android:padding="10dp"
+        android:layout_below="@id/phoneNumberInput"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/confirmPasswordInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Confirm Password"
+        android:background="@drawable/rounder_edittext"
+        android:padding="10dp"
+        android:layout_below="@id/passwordInput"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword" />
+
+    <!-- Sign Up Button -->
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="SIGN UP"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/rounded_button"
+        android:layout_below="@id/confirmPasswordInput"
+        android:layout_marginTop="20dp" />
+
+    <!-- Arrow Icon -->
+<!--    <ImageView-->
+<!--        android:id="@+id/arrowIcon"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/arrow_icon" -->
+<!--    android:layout_below="@id/signupButton"-->
+<!--    android:layout_centerHorizontal="true"-->
+<!--    android:layout_marginTop="20dp" />-->
+</RelativeLayout>

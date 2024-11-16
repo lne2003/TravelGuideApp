@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B5EDED"
+    android:padding="16dp">
+
+    <!-- Title Text -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TRIP HUNTER"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#00796B"
+        android:fontFamily="@font/inter_bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <!-- Subtitle Text -->
+    <TextView
+        android:id="@+id/subtitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hunt down your next Getaway"
+        android:textSize="14sp"
+        android:textColor="#00796B"
+        android:layout_below="@id/titleText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+
+    <!-- Logo Image -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo"
+    android:layout_below="@id/subtitleText"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="20dp" />
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="LOG IN"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/rounded_button"
+    android:layout_below="@id/logoImage"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="30dp"
+    android:fontFamily="@font/inter_bold" />
+
+    <!-- Sign Up Button -->
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="SIGN UP"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/rounded_button"
+    android:layout_below="@id/loginButton"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="15dp"
+    android:fontFamily="@font/inter_bold" />
+
+    <!-- Arrow Icon -->
+<!--    <ImageView-->
+<!--        android:id="@+id/arrowIcon"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/arrow_icon" &lt;!&ndash; Replace with your arrow icon resource &ndash;&gt;-->
+<!--    android:layout_below="@id/signupButton"-->
+<!--    android:layout_centerHorizontal="true"-->
+<!--    android:layout_marginTop="20dp" />-->
+
+</RelativeLayout>
