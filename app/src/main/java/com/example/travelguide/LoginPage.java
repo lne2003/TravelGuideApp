@@ -6,61 +6,74 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import android.view.Window;
-import android.view.WindowManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginPage extends AppCompatActivity {
 
-    private EditText usernameInput, passwordInput;
+    private EditText emailInput, passwordInput;
     private Button loginButton;
-
-    // Hard-coded credentials for demonstration purposes
-    private final String validUsername = "user@example.com";
-    private final String validPassword = "password123";
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginpage);
 
-        // Change the status bar color
-        Window window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.your_color));
+        // Initialize Firebase Auth and Firestore
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-        // Initialize the views
-        usernameInput = findViewById(R.id.emailInput);
+        // Initialize input fields and button
+        emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
 
-        // Set a click listener on the login button
+        // Set click listener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = usernameInput.getText().toString().trim();
+                String email = emailInput.getText().toString().trim();
                 String password = passwordInput.getText().toString().trim();
 
-                // Check if the fields are empty
-                if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginPage.this, "Please enter both fields", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Check the credentials
-                    if (username.equals(validUsername) && password.equals(validPassword)) {
-                        Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
-
-                        // Navigate to HomePage
-                        Intent intent = new Intent(LoginPage.this, HomePage.class);
-                        startActivity(intent);
-                        finish(); // Finish the current activity
-                    } else {
-                        // Show an error message for incorrect password
-                        passwordInput.setError("Invalid password. Please try again.");
-                        passwordInput.requestFocus(); // Focus on the password field
-                    }
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(LoginPage.this, "Please enter both email and password", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                // Authenticate the user with Firebase Authentication
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginPage.this, task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    // Check if user data exists in Firestore
+                                    db.collection("users").document(user.getUid())
+                                            .get()
+                                            .addOnSuccessListener(documentSnapshot -> {
+                                                if (documentSnapshot.exists()) {
+                                                    Toast.makeText(LoginPage.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                                    // Navigate to the HomePage
+                                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(LoginPage.this, "User data not found. Please register.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Toast.makeText(LoginPage.this, "Failed to fetch user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+                                }
+                            } else {
+                                Toast.makeText(LoginPage.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
     }
