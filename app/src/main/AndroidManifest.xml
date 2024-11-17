@@ -30,6 +30,9 @@
         <activity android:name=".SignUpPage"
             android:exported="true" />
 
+        <activity android:name=".HomePage" android:exported="true" />
+
+
     </application>
 
 </manifest>
