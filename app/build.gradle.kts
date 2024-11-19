@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services") // Required for Firebase
 }
 
 android {
@@ -38,18 +38,18 @@ dependencies {
 
     // Firebase dependencies
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore") // Using BoM, no need for a version here
     implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-firestore") // Include if using Firestore
-    implementation("com.google.firebase:firebase-appcheck") // Firebase App Check
+    implementation("com.google.firebase:firebase-appcheck")
 
     // AndroidX dependencies
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.fragment:fragment-ktx:1.5.3")
-    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
     // Material Design
     implementation("com.google.android.material:material:1.5.0")
-    implementation ("com.squareup.picasso:picasso:2.71828")
 
     // ConstraintLayout
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapter.DestinationViewHolder> {
@@ -40,16 +41,12 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
         // Load image from URL using Picasso
         Picasso.get().load(destination.getImageUrl()).into(holder.imageView);
 
-        holder.imageView.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DestinationDetailsActivity.class);
-            intent.putExtra("name", destination.getName());
-            intent.putExtra("description", destination.getDescription());
+            intent.putExtra("documentId", destination.getDocumentId());
             intent.putExtra("imageUrl", destination.getImageUrl());
-            intent.putStringArrayListExtra("restaurants", new ArrayList<>(destination.getRestaurants()));
-            intent.putExtra("weather", destination.getWeather());
             context.startActivity(intent);
         });
-
     }
 
     @Override
