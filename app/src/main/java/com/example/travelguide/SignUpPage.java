@@ -1,28 +1,35 @@
 package com.example.travelguide;
 
 import android.os.Bundle;
+import android.util.Log; // Import Log for debugging
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpPage extends AppCompatActivity {
 
+    private static final String TAG = "SignUpPage"; // Tag for debugging
     private EditText firstNameInput, surnameInput, emailInput, phoneNumberInput, passwordInput, confirmPasswordInput;
     private Button signupButton;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup); // Make sure you have "signup.xml" in res/layout
-        Window window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.your_color));
+        setContentView(R.layout.signup);
+
+        // Initialize Firebase Auth and Firestore
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         // Initialize input fields and button
         firstNameInput = findViewById(R.id.firstNameInput);
@@ -37,7 +44,6 @@ public class SignUpPage extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get input values
                 String firstName = firstNameInput.getText().toString().trim();
                 String surname = surnameInput.getText().toString().trim();
                 String email = emailInput.getText().toString().trim();
@@ -45,16 +51,44 @@ public class SignUpPage extends AppCompatActivity {
                 String password = passwordInput.getText().toString().trim();
                 String confirmPassword = confirmPasswordInput.getText().toString().trim();
 
-                // Basic validation
                 if (firstName.isEmpty() || surname.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     Toast.makeText(SignUpPage.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                } else if (!password.equals(confirmPassword)) {
-                    Toast.makeText(SignUpPage.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Sign up logic (e.g., send data to server)
-                    Toast.makeText(SignUpPage.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
-                    // You can navigate to another page if needed
+                    return;
                 }
+                if (!password.equals(confirmPassword)) {
+                    Toast.makeText(SignUpPage.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Register the user with Firebase Authentication
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(SignUpPage.this, task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    // Save user details in Firestore
+                                    Map<String, Object> userData = new HashMap<>();
+                                    userData.put("firstName", firstName);
+                                    userData.put("surname", surname);
+                                    userData.put("email", email);
+                                    userData.put("phoneNumber", phoneNumber);
+
+                                    db.collection("users").document(user.getUid())
+                                            .set(userData)
+                                            .addOnSuccessListener(aVoid -> {
+                                                Toast.makeText(SignUpPage.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                                finish(); // Close the Sign Up activity
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Log.e(TAG, "Failed to save user data", e);
+                                                Toast.makeText(SignUpPage.this, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+                                }
+                            } else {
+                                Log.e(TAG, "Registration failed", task.getException());
+                                Toast.makeText(SignUpPage.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
     }
