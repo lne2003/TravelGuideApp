@@ -31,7 +31,6 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_destination, parent, false);
         return new DestinationViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull DestinationViewHolder holder, int position) {
         Destination destination = destinationList.get(position);
@@ -45,6 +44,7 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
             Intent intent = new Intent(context, DestinationDetailsActivity.class);
             intent.putExtra("documentId", destination.getDocumentId());
             intent.putExtra("imageUrl", destination.getImageUrl());
+            intent.putExtra("name", destination.getName());  // Adding the destination name to the intent
             context.startActivity(intent);
         });
     }

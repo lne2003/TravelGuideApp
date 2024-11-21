@@ -1,19 +1,20 @@
 package com.example.travelguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class RestaurantsActivity extends AppCompatActivity {
 
@@ -51,8 +52,9 @@ public class RestaurantsActivity extends AppCompatActivity {
                             for (DocumentSnapshot document : querySnapshot) {
                                 String restaurantName = document.getString("name");
                                 String imageUrl = document.getString("imageUrl");
+                                GeoPoint position = document.getGeoPoint("position");
 
-                                if (restaurantName != null && imageUrl != null && !imageUrl.isEmpty()) {
+                                if (restaurantName != null && imageUrl != null && position != null && !imageUrl.isEmpty()) {
                                     // Create a CardView to hold restaurant name and image
                                     CardView cardView = new CardView(this);
                                     LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
@@ -107,8 +109,17 @@ public class RestaurantsActivity extends AppCompatActivity {
                                             .resize(600, 400)
                                             .centerCrop()
                                             .into(restaurantImageView);
+
+                                    // Set OnClickListener for navigating to MapsActivity
+                                    cardView.setOnClickListener(v -> {
+                                        Intent mapIntent = new Intent(RestaurantsActivity.this, MapsActivity.class);
+                                        mapIntent.putExtra("latitude", position.getLatitude());
+                                        mapIntent.putExtra("longitude", position.getLongitude());
+                                        startActivity(mapIntent);
+                                    });
+
                                 } else {
-                                    Log.w(TAG, "Missing name or imageUrl in restaurant document: " + document.getId());
+                                    Log.w(TAG, "Missing name, imageUrl, or position in restaurant document: " + document.getId());
                                 }
                             }
                         } else {
@@ -121,6 +132,4 @@ public class RestaurantsActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }
