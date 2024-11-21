@@ -35,6 +35,12 @@ android {
 dependencies {
     // Firebase BoM - ensures all Firebase dependencies use compatible versions
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.android.gms:play-services-maps:18.0.2")
+
+    //weather API
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
 
     // Firebase dependencies
     implementation("com.google.firebase:firebase-auth")
@@ -57,6 +63,7 @@ dependencies {
     // Networking and Image Loading Libraries
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.squareup.picasso:picasso:2.71828")
+    implementation(libs.play.services.maps)
 
     // Testing dependencies
     testImplementation("junit:junit:4.13.2")

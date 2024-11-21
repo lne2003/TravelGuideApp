@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat;
 
 public class LoginSignupPage extends AppCompatActivity {
 
-    private Button loginButton, signupButton;
+    private Button loginButton, signupButton;  
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
