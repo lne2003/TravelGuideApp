@@ -73,8 +73,8 @@
                 android:id="@+id/likeIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_heart"
-                android:tint="@android:color/holo_red_light" />
+                android:src="@drawable/ic_heart"/>
+<!--                android:tint="@android:color/holo_red_light" />-->
 
             <TextView
                 android:id="@+id/likeCount"
