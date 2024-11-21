@@ -9,14 +9,40 @@
         android:id="@+id/destinationImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="Image of the destination"
         android:scaleType="centerCrop" />
 
     <Button
         android:id="@+id/restaurantsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Restaurants"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp" />
+
+
+    <!-- Add the new Button for Nightlife -->
+    <Button
+        android:id="@+id/nightlifeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nightlife"
+        android:layout_marginTop="16dp" />
+
+    <!-- Add the new Button for Weather -->
+    <Button
+        android:id="@+id/weatherButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Weather"
+        android:layout_marginTop="16dp" />
+
+    <!-- Add the new Button for People's Favorite -->
+    <Button
+        android:id="@+id/peoplesFavoriteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="People's Favorite"
+        android:layout_marginTop="16dp" />
+
 
 </LinearLayout>

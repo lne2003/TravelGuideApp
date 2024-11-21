@@ -36,7 +36,7 @@
         <activity android:name=".DestinationDetailsActivity" />
         <activity android:name=".RestaurantsActivity" />
         <activity android:name=".NightlifeActivity" />
-        <activity android:name=".PeoplesFavoriteActivity" />
+        <activity android:name=".RatingsPage" />
         <activity android:name=".AttractionsActivity" />
         <activity android:name=".WeatherActivity" />
 
