@@ -116,9 +116,10 @@
         android:layout_height="50dp"
         android:text="SIGN UP"
         android:textColor="#FFFFFF"
-        android:background="@drawable/rounded_button"
+
         android:layout_below="@id/confirmPasswordInput"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#00796B"/>
 
     <!-- Arrow Icon -->
 <!--    <ImageView-->

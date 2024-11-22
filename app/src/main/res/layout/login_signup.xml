@@ -47,11 +47,12 @@
         android:layout_height="50dp"
         android:text="LOG IN"
         android:textColor="#FFFFFF"
-        android:background="@drawable/rounded_button"
+
     android:layout_below="@id/logoImage"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="30dp"
-    android:fontFamily="@font/inter_bold" />
+    android:fontFamily="@font/inter_bold"
+        android:backgroundTint="#00796B"/>
 
     <!-- Sign Up Button -->
     <Button
@@ -60,11 +61,12 @@
         android:layout_height="50dp"
         android:text="SIGN UP"
         android:textColor="#FFFFFF"
-        android:background="@drawable/rounded_button"
+
     android:layout_below="@id/loginButton"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="15dp"
-    android:fontFamily="@font/inter_bold" />
+    android:fontFamily="@font/inter_bold"
+        android:backgroundTint="#00796B"/>
 
     <!-- Arrow Icon -->
 <!--    <ImageView-->

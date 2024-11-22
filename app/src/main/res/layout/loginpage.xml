@@ -94,9 +94,10 @@
         android:layout_below="@id/forgotPasswordText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button"
+
         android:fontFamily="@font/inter_bold"
         android:text="LOG IN"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#00796B"/>
 
 </RelativeLayout>

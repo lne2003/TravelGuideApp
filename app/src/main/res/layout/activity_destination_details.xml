@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#B5EDED">
 
     <ImageView
         android:id="@+id/destinationImageView"
@@ -17,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Restaurants"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#00796B"/>
 
 
     <!-- Add the new Button for Nightlife -->
@@ -26,7 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nightlife"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#00796B"/>
 
     <!-- Add the new Button for Weather -->
     <Button
@@ -34,7 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Weather"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#00796B"/>
 
     <!-- Add the new Button for People's Favorite -->
     <Button
@@ -42,7 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="People's Favorite"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#00796B"/>
 
 
 </LinearLayout>

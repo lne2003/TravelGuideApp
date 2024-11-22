@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TravelGuide</string>
+    <string name="default_notification_channel_id">default_channel</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="nav_open">Open Navigation Drawer</string>
+    <string name="nav_close">Close Navigation Drawer</string>
 </resources>

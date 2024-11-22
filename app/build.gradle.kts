@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.appcompat:appcompat:1.2.0")
+    implementation ("com.google.android.material:material:1.3.0")
     // Firebase BoM - ensures all Firebase dependencies use compatible versions
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.android.gms:play-services-maps:18.0.2")

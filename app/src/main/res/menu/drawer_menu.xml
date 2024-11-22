@@ -7,14 +7,9 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/nav_destinations"
-        android:icon="@drawable/placeholder1"
-        android:title="Destinations" />
-
-    <item
-        android:id="@+id/nav_weather"
+        android:id="@+id/nav_profile"
         android:icon="@drawable/weather_icon_description"
-        android:title="Weather" />
+        android:title="Profile" />
 
     <item
         android:id="@+id/nav_favorites"
