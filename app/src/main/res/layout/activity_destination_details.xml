@@ -22,12 +22,12 @@
         android:backgroundTint="#00796B"/>
 
 
-    <!-- Add the new Button for Nightlife -->
+    <!-- Add the new Button for Attractions -->
     <Button
         android:id="@+id/nightlifeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nightlife"
+        android:text="NightLife"
         android:layout_marginTop="16dp"
         android:backgroundTint="#00796B"/>
 
@@ -48,6 +48,7 @@
         android:text="People's Favorite"
         android:layout_marginTop="16dp"
         android:backgroundTint="#00796B"/>
+
 
 
 </LinearLayout>

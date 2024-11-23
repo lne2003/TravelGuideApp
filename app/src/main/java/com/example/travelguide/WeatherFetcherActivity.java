@@ -17,7 +17,7 @@ public class WeatherFetcherActivity extends AppCompatActivity {
 
     private static final String TAG = "WeatherFetcherActivity";
     private static final String BASE_URL = "http://api.weatherstack.com/";
-    private static final String API_KEY = "784c250cd160e7d728b26727e290520d"; // Your Weatherstack API key
+    private static final String API_KEY = "abece6f5549233b37a78d761a1d69a04"; // Your Weatherstack API key
 
     private FirebaseFirestore db;
 

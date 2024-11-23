@@ -2,6 +2,8 @@ package com.example.travelguide;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,62 +17,50 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Set the main layout
+        setContentView(R.layout.activity_main);
 
-        // Set up the toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        // Set up the drawer layout
         drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Set up the toggle button for the drawer
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Set up the navigation view
-        navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(item -> {
-            Fragment selectedFragment = null;
-
-            int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                // Navigate to the home page
-                Intent homeIntent = new Intent(MainActivity.this, HomePage.class);
-                startActivity(homeIntent);
-            } else if (id == R.id.nav_favorites) {
-                // Navigate to the wishlist page
-                Intent wishlistIntent = new Intent(MainActivity.this, HomePage.class);
-                startActivity(wishlistIntent);
-            } else if (id == R.id.nav_profile) {
-                // Navigate to the profile page
-                Intent profileIntent = new Intent(MainActivity.this, HomePage.class);
-                startActivity(profileIntent);
-            }
-
-            // Close the drawer after selecting an item
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        });
-
-        // Load the default fragment or activity
-        if (savedInstanceState == null) {
-            // Load any default fragment or perform any action as needed
+        // Enable the home button to open/close the drawer
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        // Handle navigation item clicks
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.nav_home) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+                } else if (item.getItemId() == R.id.nav_profile) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ProfileFragment()).commit();
+                } else if (item.getItemId() == R.id.nav_settings) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+                }
+                drawerLayout.closeDrawers(); // Close the drawer after selection
+                return true;
+            }
+        });
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
