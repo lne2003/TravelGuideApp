@@ -2,6 +2,8 @@ package com.example.travelguide;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +46,17 @@ public class HomePage extends AppCompatActivity {
             }
 
             return true;
+        });
+
+        // Set up the "Let's Explore" button
+        Button getStartedButton = findViewById(R.id.getStartedButton);
+        getStartedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the DestinationDetailsActivity
+                Intent intent = new Intent(HomePage.this, DestinationsActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
