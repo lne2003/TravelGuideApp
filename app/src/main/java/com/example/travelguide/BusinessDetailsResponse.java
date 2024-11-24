@@ -1,10 +1,20 @@
 package com.example.travelguide;
 
+import com.google.gson.annotations.SerializedName;
+
 public class BusinessDetailsResponse {
     private String name;
     private String phone;
     private double rating;
     private Location location;
+
+    @SerializedName("image_url")
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
 
     public String getName() {
         return name;

@@ -1,12 +1,14 @@
 package com.example.travelguide;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.travelguide.ApiClient;
+import com.bumptech.glide.Glide;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,22 +22,38 @@ public class NightlifeDetailsActivity extends AppCompatActivity {
     private TextView addressTextView;
     private TextView phoneTextView;
     private TextView ratingTextView;
+    private ImageView imageView; // Add this for the image
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nightlife_details);
 
-        nameTextView = findViewById(R.id.nameTextView);
-        addressTextView = findViewById(R.id.addressTextView);
-        phoneTextView = findViewById(R.id.phoneTextView);
-        ratingTextView = findViewById(R.id.ratingTextView);
+    public void onResponse(Call<BusinessDetailsResponse> call, Response<BusinessDetailsResponse> response) {
+        if (response.isSuccessful() && response.body() != null) {
+            BusinessDetailsResponse details = response.body();
 
-        String businessId = getIntent().getStringExtra("businessId");
-        apiService = ApiClient.getClient().create(YelpApiService.class);
+            // Log the full response for debugging
+            Log.d("NightlifeDetails", "Raw Response: " + response.body().toString());
 
-        fetchBusinessDetails(businessId);
+            // Existing code for setting text fields
+            nameTextView.setText(details.getName());
+            addressTextView.setText(details.getLocation().getAddress1());
+            phoneTextView.setText(details.getPhone());
+            ratingTextView.setText(String.valueOf(details.getRating()));
+
+            // Log and load the image
+            String imageUrl = details.getImageUrl();
+            Log.d("NightlifeDetails", "Image URL: " + imageUrl);
+
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Glide.with(NightlifeDetailsActivity.this)
+                        .load(imageUrl)
+                        .into(imageView);
+            } else {
+                imageView.setImageResource(R.drawable.placeholder1);
+            }
+        } else {
+            Toast.makeText(NightlifeDetailsActivity.this, "Failed to load details", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     private void fetchBusinessDetails(String businessId) {
         if (businessId == null) {
@@ -48,10 +66,24 @@ public class NightlifeDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<BusinessDetailsResponse> call, Response<BusinessDetailsResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     BusinessDetailsResponse details = response.body();
+
+                    // Set the text fields
                     nameTextView.setText(details.getName());
                     addressTextView.setText(details.getLocation().getAddress1());
                     phoneTextView.setText(details.getPhone());
                     ratingTextView.setText(String.valueOf(details.getRating()));
+
+                    // Load the image using Glide
+                    String imageUrl = details.getImageUrl();
+                    Log.d("NightlifeDetails", "Image URL: " + imageUrl);
+
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        Glide.with(NightlifeDetailsActivity.this)
+                                .load(imageUrl)
+                                .into(imageView);
+                    } else {
+                        imageView.setImageResource(R.drawable.placeholder1); // Fallback image
+                    }
                 } else {
                     Toast.makeText(NightlifeDetailsActivity.this, "Failed to load details", Toast.LENGTH_SHORT).show();
                 }

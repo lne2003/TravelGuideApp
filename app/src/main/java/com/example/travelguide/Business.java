@@ -2,34 +2,37 @@ package com.example.travelguide;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Business {
+import java.util.List;
 
-    private String id;
+public class Business {
     private String name;
     private String imageUrl;
-    private String address;
-    private Location location;
     private double rating;
 
+    @SerializedName("location")
+    private Location location;
 
-
-    public String getId() {
-        return id;
-    }
+    @SerializedName("categories")
+    private List<Category> categories;
 
     public String getName() {
         return name;
     }
 
-    public String getAddress() {
-        return address;
-    }
     public String getImageUrl() {
         return imageUrl;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
     public Location getLocation() {
         return location;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
     }
 
     public static class Location {
@@ -39,7 +42,12 @@ public class Business {
             return address1;
         }
     }
-    public double getRating() { // Ensure this getter exists
-        return rating;
+
+    public static class Category {
+        private String title;
+
+        public String getTitle() {
+            return title;
+        }
     }
 }

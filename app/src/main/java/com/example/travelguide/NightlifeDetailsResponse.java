@@ -27,10 +27,10 @@ public class NightlifeDetailsResponse {
         return name;
     }
 
+    @SerializedName("image_url")
     public String getImageUrl() {
         return imageUrl;
     }
-
     public Location getLocation() {
         return location;
     }
