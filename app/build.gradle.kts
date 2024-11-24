@@ -44,6 +44,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.3")
     implementation ("com.apollographql.apollo3:apollo-runtime:3.2.0")
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
 
     // Firebase dependencies
     implementation("com.google.firebase:firebase-auth")
