@@ -58,6 +58,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.fragment:fragment-ktx:1.5.3")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     // Material Design
     implementation("com.google.android.material:material:1.5.0")

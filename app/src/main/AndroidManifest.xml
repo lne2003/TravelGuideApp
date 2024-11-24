@@ -46,6 +46,7 @@
         <activity android:name=".RatingsPage" android:exported="true" />
         <activity android:name=".WeatherActivity" android:exported="true" />
         <activity android:name=".FavoritesActivity" android:exported="true" />
+      />
         <!-- MapsActivity to show restaurant locations on a map -->
         <activity android:name=".MapsActivity" android:exported="true" />
         <activity android:name=".NightlifeActivity"/>
