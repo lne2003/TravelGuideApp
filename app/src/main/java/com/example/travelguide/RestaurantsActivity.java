@@ -3,6 +3,7 @@ package com.example.travelguide;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class RestaurantsActivity extends AppCompatActivity {
     private static final String TAG = "RestaurantsActivity";
     private TextView restaurantsTextView;
     private FirebaseFirestore db;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 
         restaurantsTextView = findViewById(R.id.restaurantsTextView);
         db = FirebaseFirestore.getInstance();
-
+        dbHelper = new DatabaseHelper(this);
         String documentId = getIntent().getStringExtra("documentId");
 
         if (documentId != null) {
@@ -55,7 +57,7 @@ public class RestaurantsActivity extends AppCompatActivity {
                                 GeoPoint position = document.getGeoPoint("position");
 
                                 if (restaurantName != null && imageUrl != null && position != null && !imageUrl.isEmpty()) {
-                                    // Create a CardView to hold restaurant name and image
+                                    // Create a CardView to hold restaurant name, image, and button
                                     CardView cardView = new CardView(this);
                                     LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                                             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -67,7 +69,7 @@ public class RestaurantsActivity extends AppCompatActivity {
                                     cardView.setElevation(8);
                                     cardView.setPadding(16, 16, 16, 16);
 
-                                    // Create a LinearLayout to hold name and image
+                                    // Create a LinearLayout to hold name, image, and button
                                     LinearLayout cardContent = new LinearLayout(this);
                                     cardContent.setOrientation(LinearLayout.VERTICAL);
                                     cardContent.setLayoutParams(new LinearLayout.LayoutParams(
@@ -93,9 +95,19 @@ public class RestaurantsActivity extends AppCompatActivity {
                                     ));
                                     restaurantImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-                                    // Add TextView and ImageView to cardContent
+                                    // Create a "Add to Favorites" button
+                                    Button addToFavoritesButton = new Button(this);
+                                    addToFavoritesButton.setLayoutParams(new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    ));
+                                    addToFavoritesButton.setText("Add to Favorites");
+                                    addToFavoritesButton.setPadding(0, 16, 0, 0);
+
+                                    // Add TextView, ImageView, and Button to cardContent
                                     cardContent.addView(nameTextView);
                                     cardContent.addView(restaurantImageView);
+                                    cardContent.addView(addToFavoritesButton);
 
                                     // Add cardContent to the cardView
                                     cardView.addView(cardContent);
@@ -115,7 +127,22 @@ public class RestaurantsActivity extends AppCompatActivity {
                                         Intent mapIntent = new Intent(RestaurantsActivity.this, MapsActivity.class);
                                         mapIntent.putExtra("latitude", position.getLatitude());
                                         mapIntent.putExtra("longitude", position.getLongitude());
+                                        mapIntent.putExtra("restaurantName", restaurantName);
                                         startActivity(mapIntent);
+                                    });
+
+                                    // Set OnClickListener for "Add to Favorites" button
+                                    addToFavoritesButton.setOnClickListener(v -> {
+                                        DatabaseHelper dbHelper = new DatabaseHelper(RestaurantsActivity.this);
+                                        Restaurant restaurant = new Restaurant(
+                                                restaurantName,
+                                                imageUrl,
+                                                position.getLatitude(),
+                                                position.getLongitude()
+                                        );
+                                        dbHelper.addFavorite(restaurant);
+                                        Intent intent = new Intent(RestaurantsActivity.this, FavoritesActivity.class);
+                                        startActivity(intent);
                                     });
 
                                 } else {
@@ -132,4 +159,5 @@ public class RestaurantsActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }

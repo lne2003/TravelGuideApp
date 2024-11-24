@@ -52,6 +52,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore") // Using BoM, no need for a version here
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-appcheck")
+    implementation ("androidx.cardview:cardview:1.0.0")
 
     // AndroidX dependencies
     implementation("androidx.appcompat:appcompat:1.5.1")

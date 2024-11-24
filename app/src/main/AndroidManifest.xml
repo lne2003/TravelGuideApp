@@ -48,7 +48,8 @@
 
         <!-- MapsActivity to show restaurant locations on a map -->
         <activity android:name=".MapsActivity" android:exported="true" />
-        <activity android:name=".NightlifeActivity" />
+        <activity android:name=".NightlifeActivity"/>
+        <activity android:name=".FavoritesActivity"/>
 
 
     </application>
