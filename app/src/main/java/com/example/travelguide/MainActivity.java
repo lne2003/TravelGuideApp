@@ -43,17 +43,34 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = null;
+
+                // Determine which fragment to load
                 if (item.getItemId() == R.id.nav_home) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+                    fragment = new HomeFragment();
                 } else if (item.getItemId() == R.id.nav_profile) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ProfileFragment()).commit();
-                } else if (item.getItemId() == R.id.nav_settings) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+                    fragment = new ProfileFragment();}
+//                } else if (item.getItemId() == R.id.nav_settings) {
+//                    fragment = new SettingsFragment();
+//                }
+
+                // Replace the current fragment
+                if (fragment != null) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, fragment)
+                            .commit();
                 }
-                drawerLayout.closeDrawers(); // Close the drawer after selection
+                if (savedInstanceState == null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+                    navigationView.setCheckedItem(R.id.nav_home); // Highlight the Home item
+                }
+
+                drawerLayout.closeDrawer(GravityCompat.START); // Close the drawer
                 return true;
             }
         });
+
     }
 
     @Override

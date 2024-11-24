@@ -38,7 +38,7 @@ dependencies {
     // Firebase BoM - ensures all Firebase dependencies use compatible versions
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.android.gms:play-services-maps:18.0.2")
-
+    implementation ("androidx.cardview:cardview:1.0.0")
     //weather API
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
