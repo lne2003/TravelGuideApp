@@ -1,16 +1,20 @@
 package com.example.travelguide;
 
 public class RatingItem {
-    private String name, location, review;
+    private String name;
+    private String location;
+    private String review;
     private int likes;
-    private int photoResId; // Resource ID for the avatar photo
+    private String photoUrl;
+    private int rating; // New field for rating
 
-    public RatingItem(String name, String location, String review, int likes, int photoResId) {
+    public RatingItem(String name, String location, String review, int likes, String photoUrl, int rating) {
         this.name = name;
         this.location = location;
         this.review = review;
         this.likes = likes;
-        this.photoResId = photoResId;
+        this.photoUrl = photoUrl;
+        this.rating = rating;
     }
 
     public String getName() {
@@ -29,7 +33,11 @@ public class RatingItem {
         return likes;
     }
 
-    public int getPhotoResId() {
-        return photoResId;
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public int getRating() {
+        return rating; // Getter for rating
     }
 }

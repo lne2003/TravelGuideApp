@@ -121,11 +121,14 @@ public class DestinationDetailsActivity extends BaseActivity {
         peoplesFavoriteButton.setOnClickListener(v -> {
             if (NetworkUtils.isNetworkAvailable(this)) {
                 Intent intent = new Intent(DestinationDetailsActivity.this, RatingsPage.class);
+                intent.putExtra("destinationName", destinationName); // Pass the destination name
+                intent.putExtra("documentId", destinationDocumentId); // Pass the document ID
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "No internet connection.", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     private void cacheDestinationDetails() {
