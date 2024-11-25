@@ -26,7 +26,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantsActivity extends AppCompatActivity {
+public class RestaurantsActivity extends BaseActivity {
 
     private static final String TAG = "RestaurantsActivity";
     private static final String RESTAURANTS_CACHE = "RestaurantsCache";
@@ -219,4 +219,9 @@ public class RestaurantsActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(RESTAURANTS_CACHE, Context.MODE_PRIVATE);
         return prefs.contains(documentId); // Check if cache exists for this city
     }
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
+    }
+
 }
