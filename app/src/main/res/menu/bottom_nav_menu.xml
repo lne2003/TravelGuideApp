@@ -1,7 +1,9 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="Home" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_back"
+        android:icon="@drawable/nav_back"
+        android:title="Back" />
     <item
         android:id="@+id/nav_wishlist"
         android:icon="@drawable/ic_heart"
@@ -10,8 +12,5 @@
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
         android:title="Profile" />
-    <item
-        android:id="@+id/nav_back"
-        android:icon="@drawable/circle_background"
-        android:title="Back" />
+
 </menu>

@@ -17,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NightlifeActivity extends AppCompatActivity {
+public class NightlifeActivity extends BaseActivity {
     private RecyclerView nightlifeRecyclerView;
     private NightlifeAdapter nightlifeAdapter;
     private ProgressBar progressBar;
@@ -97,5 +97,9 @@ public class NightlifeActivity extends AppCompatActivity {
                 Toast.makeText(NightlifeActivity.this, "Failed to load data.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
     }
 }

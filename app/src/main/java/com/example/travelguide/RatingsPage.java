@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RatingsPage extends AppCompatActivity {
+public class RatingsPage extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +44,9 @@ public class RatingsPage extends AppCompatActivity {
 
         RatingsAdapter adapter = new RatingsAdapter(ratings);
         recyclerView.setAdapter(adapter);
+    }
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
     }
 }

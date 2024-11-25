@@ -17,7 +17,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import java.io.IOException;
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends BaseActivity {
 
     private static final String TAG = "WeatherActivity";
     private TextView temperatureTextView;
@@ -104,5 +104,9 @@ public class WeatherActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
     }
 }

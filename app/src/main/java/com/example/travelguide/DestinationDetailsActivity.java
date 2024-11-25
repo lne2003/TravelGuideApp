@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
-public class DestinationDetailsActivity extends AppCompatActivity {
+public class DestinationDetailsActivity extends BaseActivity {
 
     private static final String TAG = "DestinationDetails";
     private static final String PREFS_NAME = "DestinationCache";
@@ -170,5 +170,9 @@ public class DestinationDetailsActivity extends AppCompatActivity {
                     .error(R.drawable.placeholder)
                     .into(destinationImageView);
         }
+    }
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
     }
 }
