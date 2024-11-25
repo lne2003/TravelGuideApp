@@ -28,7 +28,9 @@
             android:background="@drawable/rounded_edittext_background"
             android:layout_marginBottom="16dp"
             android:inputType="textPassword"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/white" />
 
         <!-- Confirm Password Input -->
         <EditText
@@ -40,7 +42,9 @@
             android:background="@drawable/rounded_edittext_background"
             android:layout_marginBottom="16dp"
             android:inputType="textPassword"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/white" />
 
         <!-- Save Changes Button -->
         <Button

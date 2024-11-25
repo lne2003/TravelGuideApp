@@ -38,7 +38,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/nameTextView"
@@ -47,7 +47,7 @@
                 android:textStyle="bold"
                 android:text="John Doe"
                 android:textSize="16sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
 
         <!-- Email Card -->
@@ -67,7 +67,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/emailTextView"
@@ -76,7 +76,7 @@
                 android:textStyle="bold"
                 android:text="johndoe@gmail.com"
                 android:textSize="16sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
 
         <!-- History Card -->
@@ -95,7 +95,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/historyTextView"
@@ -104,7 +104,7 @@
                 android:textStyle="bold"
                 android:text="1. Viewed: Paris\n2. Bookmarked: Eiffel Tower"
                 android:textSize="16sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
