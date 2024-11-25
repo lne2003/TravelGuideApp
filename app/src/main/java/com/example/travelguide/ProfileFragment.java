@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,18 +42,20 @@ public class ProfileFragment extends Fragment {
         // Initialize welcome text view
         welcomeTextView = rootView.findViewById(R.id.welcomeTextView);
 
-        // Fetch and display first name
+        // Fetch and display user's first name
         fetchFirstName();
 
-        // Setup logout button functionality
+        // Initialize buttons and linear layouts
+        LinearLayout profileSettingsButton = rootView.findViewById(R.id.profileSettingsLayout);
+        LinearLayout privacySettingsButton = rootView.findViewById(R.id.privacySettingsLayout);
+        LinearLayout notificationSettingsButton = rootView.findViewById(R.id.notificationSettingsLayout);
         Button logoutButton = rootView.findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), LoginSignupPage.class);
-            startActivity(intent);
-            if (getActivity() != null) {
-                getActivity().finish();
-            }
-        });
+
+        // Set click listeners for each button
+        profileSettingsButton.setOnClickListener(v -> navigateToProfileSettings());
+        privacySettingsButton.setOnClickListener(v -> navigateToPrivacySettings());
+        notificationSettingsButton.setOnClickListener(v -> navigateToNotificationSettings());
+        logoutButton.setOnClickListener(v -> performLogout());
 
         return rootView;
     }
@@ -81,6 +84,30 @@ public class ProfileFragment extends Fragment {
                     });
         } else {
             welcomeTextView.setText("Welcome, User!");
+        }
+    }
+
+    private void navigateToProfileSettings() {
+        Intent intent = new Intent(getActivity(), ProfileSettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void navigateToPrivacySettings() {
+        Intent intent = new Intent(getActivity(), PrivacySettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void navigateToNotificationSettings() {
+        Intent intent = new Intent(getActivity(), NotificationSettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void performLogout() {
+        mAuth.signOut();
+        Intent intent = new Intent(getActivity(), LoginPage.class);
+        startActivity(intent);
+        if (getActivity() != null) {
+            getActivity().finish();
         }
     }
 }

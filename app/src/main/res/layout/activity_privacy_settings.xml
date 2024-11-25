@@ -1,0 +1,56 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#B5EDED">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- New Password Input -->
+        <EditText
+            android:id="@+id/newPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="New Password"
+            android:padding="16dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword"
+            android:textSize="16sp" />
+
+        <!-- Confirm Password Input -->
+        <EditText
+            android:id="@+id/confirmPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Confirm New Password"
+            android:padding="16dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword"
+            android:textSize="16sp" />
+
+        <!-- Save Changes Button -->
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Save Changes"
+            android:backgroundTint="#00796B"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
+</ScrollView>
