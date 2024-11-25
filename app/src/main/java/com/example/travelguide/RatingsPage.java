@@ -16,7 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RatingsPage extends AppCompatActivity {
+public class RatingsPage extends BaseActivity {
 
     private static final String TAG = "RatingsPage";
     private RecyclerView recyclerView;
@@ -104,5 +104,10 @@ public class RatingsPage extends AppCompatActivity {
 
         // Notify the adapter about data changes
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
     }
 }

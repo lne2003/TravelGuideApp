@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LeaveReviewActivity extends AppCompatActivity {
+public class LeaveReviewActivity extends BaseActivity {
 
     private static final String TAG = "LeaveReviewActivity";
 
@@ -107,5 +107,9 @@ public class LeaveReviewActivity extends AppCompatActivity {
                     Log.e(TAG, "Failed to submit review.", e);
                     Toast.makeText(this, "Failed to submit review. Please try again.", Toast.LENGTH_SHORT).show();
                 });
+    }
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
     }
 }
