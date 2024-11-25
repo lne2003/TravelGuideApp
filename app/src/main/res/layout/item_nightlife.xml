@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Navigate"
             android:layout_marginTop="8dp"
+            android:backgroundTint="#00796B"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

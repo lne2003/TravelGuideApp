@@ -131,9 +131,10 @@ public class RestaurantsActivity extends BaseActivity {
             Intent intent = new Intent(RestaurantsActivity.this, MapsActivity.class);
             intent.putExtra("latitude", restaurant.getLatitude());
             intent.putExtra("longitude", restaurant.getLongitude());
-            intent.putExtra("restaurantName", restaurant.getName());
+            intent.putExtra("restaurantName", restaurant.getName()); // Pass the name
             startActivity(intent);
         });
+
 
         // Create and add content to the CardView
         LinearLayout cardContent = new LinearLayout(this);
