@@ -4,10 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -23,18 +26,30 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.RatingVi
     @Override
     public RatingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_rating, parent, false);
+                .inflate(R.layout.item_rating, parent, false); // Ensure layout file name matches
         return new RatingViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RatingViewHolder holder, int position) {
         RatingItem item = ratingList.get(position);
-        holder.personName.setText(item.getName());
-        holder.personLocation.setText(item.getLocation());
-        holder.reviewText.setText(item.getReview());
+
+        // Set text fields
+        holder.personName.setText(item.getName() != null ? item.getName() : "Anonymous");
+        holder.personLocation.setText(item.getLocation() != null ? item.getLocation() : "Unknown Location");
+        holder.reviewText.setText(item.getReview() != null ? item.getReview() : "No review provided.");
         holder.likeCount.setText(item.getLikes() + "K");
-        holder.avatarImage.setImageResource(item.getPhotoResId()); // Set the avatar photo
+
+        // Load avatar image
+        if (item.getPhotoUrl() != null && !item.getPhotoUrl().isEmpty()) {
+            Picasso.get().load(item.getPhotoUrl()).placeholder(R.drawable.placeholder).into(holder.avatarImage);
+         // Fallback to resource-based image
+        } else {
+            holder.avatarImage.setImageResource(R.drawable.peletie); // Default placeholder image
+        }
+
+        // Set rating
+        holder.reviewRatingBar.setRating(item.getRating()); // Set rating from RatingItem
     }
 
     @Override
@@ -45,6 +60,7 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.RatingVi
     static class RatingViewHolder extends RecyclerView.ViewHolder {
         TextView personName, personLocation, reviewText, likeCount;
         ImageView avatarImage;
+        RatingBar reviewRatingBar; // Add RatingBar
 
         public RatingViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +69,7 @@ public class RatingsAdapter extends RecyclerView.Adapter<RatingsAdapter.RatingVi
             reviewText = itemView.findViewById(R.id.reviewText);
             likeCount = itemView.findViewById(R.id.likeCount);
             avatarImage = itemView.findViewById(R.id.avatarImage);
+            reviewRatingBar = itemView.findViewById(R.id.reviewRatingBar); // Initialize RatingBar
         }
     }
 }
