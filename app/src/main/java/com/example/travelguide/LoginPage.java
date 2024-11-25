@@ -5,25 +5,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginPage extends AppCompatActivity {
 
     private EditText emailInput, passwordInput;
     private Button loginButton;
+    private TextView forgotPasswordText; // Declare the TextView
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Check for network availability
+
         if (!NetworkUtils.isNetworkAvailable(this)) {
             Intent offlineIntent = new Intent(this, OfflineActivity.class);
             startActivity(offlineIntent);
@@ -40,6 +41,9 @@ public class LoginPage extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
+
+        // Initialize forgotPasswordText
+        forgotPasswordText = findViewById(R.id.forgotPasswordText);
 
         // Set click listener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -59,29 +63,25 @@ public class LoginPage extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user != null) {
-                                    // Check if user data exists in Firestore
-                                    db.collection("users").document(user.getUid())
-                                            .get()
-                                            .addOnSuccessListener(documentSnapshot -> {
-                                                if (documentSnapshot.exists()) {
-                                                    Toast.makeText(LoginPage.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                                    // Navigate to the HomePage
-                                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
-                                                    intent.putExtra("isLoggedIn", true); // Pass the flag
-                                                    startActivity(intent);
-                                                    finish();
-                                                } else {
-                                                    Toast.makeText(LoginPage.this, "User data not found. Please register.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                Toast.makeText(LoginPage.this, "Failed to fetch user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            });
+                                    Toast.makeText(LoginPage.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                             } else {
                                 Toast.makeText(LoginPage.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
+            }
+        });
+
+        // Set click listener for the Forgot Password text
+        forgotPasswordText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to ForgotPasswordActivity
+                Intent intent = new Intent(LoginPage.this, ForgotPasswordActivity.class);
+                startActivity(intent);
             }
         });
     }
