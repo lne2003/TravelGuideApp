@@ -25,7 +25,7 @@
         <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDj2izgrRXqn9s9HPPEHURKaCTsIxgt9Zg" />
+            android:value="AIzaSyCcHyGJTmOEfUut1l1GYtVYFGyY-WGGYBU" />
 
         <service
             android:name=".EPL498FirebaseMessagingService"
