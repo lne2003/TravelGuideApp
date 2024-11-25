@@ -4,4 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#ADD8E6</color>
     <color name="your_color">#FFFFFF</color>
+    <color name="primaryColor">#3F51B5</color> <!-- Retry button color -->
+    <color name="darkGray">#333333</color>      <!-- Main offline message -->
+    <color name="lightGray">#999999</color>     <!-- Sub-message -->
+    <color name="backgroundGray">#F5F5F5</color> <!-- Background color -->
+
 </resources>

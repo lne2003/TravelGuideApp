@@ -1,9 +1,12 @@
 package com.example.travelguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
@@ -24,6 +27,13 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+            Toast.makeText(this, "No internet connection. Please try again later.", Toast.LENGTH_SHORT).show();
+            Intent offlineIntent = new Intent(this, OfflineActivity.class);
+            startActivity(offlineIntent);
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_weather);
 
         // Initialize views

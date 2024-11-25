@@ -34,6 +34,14 @@ public class DestinationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destinations);
 
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+            Toast.makeText(this, "No internet connection. Please try again later.", Toast.LENGTH_SHORT).show();
+            Intent offlineIntent = new Intent(this, OfflineActivity.class);
+            startActivity(offlineIntent);
+            finish();
+            return;
+        }
+
         recyclerView = findViewById(R.id.recyclerView);
         progressBar = findViewById(R.id.progressBar);
 

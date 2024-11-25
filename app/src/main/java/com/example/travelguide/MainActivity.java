@@ -1,5 +1,6 @@
 package com.example.travelguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+            // Redirect to OfflineActivity
+            Intent offlineIntent = new Intent(this, OfflineActivity.class);
+            startActivity(offlineIntent);
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_main);
 
         // Set default fragment

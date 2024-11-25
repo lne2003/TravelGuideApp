@@ -2,25 +2,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#E0E0E0">
+    android:background="@color/backgroundGray"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/offlineText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No Internet Connection"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
+    <!-- Icon -->
+    <ImageView
+        android:id="@+id/offlineIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_offline"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp" />
+        android:layout_marginTop="60dp" />
 
-    <Button
-        android:id="@+id/retryButton"
+    <!-- Offline Message -->
+    <TextView
+        android:id="@+id/offlineMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retry"
-        android:layout_below="@id/offlineText"
+        android:text="You are currently offline"
+        android:textSize="20sp"
+        android:textColor="@color/darkGray"
+        android:layout_below="@id/offlineIcon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
+
+    <!-- Sub-message -->
+    <TextView
+        android:id="@+id/subOfflineMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check your internet connection and try again."
+        android:textSize="16sp"
+        android:textColor="@color/lightGray"
+        android:layout_below="@id/offlineMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <!-- Retry Button -->
+    <Button
+        android:id="@+id/retryButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Retry"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primaryColor"
+        android:layout_below="@id/subOfflineMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:elevation="4dp" />
 </RelativeLayout>

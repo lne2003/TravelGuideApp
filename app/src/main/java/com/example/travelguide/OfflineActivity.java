@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class OfflineActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,11 +17,14 @@ public class OfflineActivity extends AppCompatActivity {
         retryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Retry logic: Check network and go back to MainActivity if online
+                // Retry network connection
                 if (NetworkUtils.isNetworkAvailable(OfflineActivity.this)) {
-                    Intent mainIntent = new Intent(OfflineActivity.this, MainActivity.class);
-                    startActivity(mainIntent);
+                    Intent intent = new Intent(OfflineActivity.this, LoginSignupPage.class);
+                    startActivity(intent);
                     finish();
+                } else {
+                    // Show a message if still offline
+                    retryButton.setText("Still Offline. Try Again?");
                 }
             }
         });

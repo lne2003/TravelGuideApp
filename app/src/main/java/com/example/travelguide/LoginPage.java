@@ -23,6 +23,13 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Check for network availability
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+            Intent offlineIntent = new Intent(this, OfflineActivity.class);
+            startActivity(offlineIntent);
+            finish();
+            return;
+        }
         setContentView(R.layout.loginpage);
 
         // Initialize Firebase Auth and Firestore
@@ -60,6 +67,7 @@ public class LoginPage extends AppCompatActivity {
                                                     Toast.makeText(LoginPage.this, "Login successful", Toast.LENGTH_SHORT).show();
                                                     // Navigate to the HomePage
                                                     Intent intent = new Intent(LoginPage.this, HomePage.class);
+                                                    intent.putExtra("isLoggedIn", true); // Pass the flag
                                                     startActivity(intent);
                                                     finish();
                                                 } else {

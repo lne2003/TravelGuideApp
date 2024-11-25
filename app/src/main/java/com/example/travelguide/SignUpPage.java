@@ -1,5 +1,6 @@
 package com.example.travelguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log; // Import Log for debugging
 import android.view.View;
@@ -25,6 +26,13 @@ public class SignUpPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Check for network availability
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+            Intent offlineIntent = new Intent(this, OfflineActivity.class);
+            startActivity(offlineIntent);
+            finish();
+            return;
+        }
         setContentView(R.layout.signup);
 
         // Initialize Firebase Auth and Firestore

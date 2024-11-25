@@ -52,6 +52,9 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-appcheck")
     implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("com.google.firebase:firebase-messaging:23.0.0")
+    implementation ("com.google.firebase:firebase-inappmessaging:20.2.4")  // Add this line for In-App Messaging
+    implementation ("com.google.firebase:firebase-analytics-ktx:19.0.0")
 
     // AndroidX dependencies
     implementation("androidx.appcompat:appcompat:1.5.1")
@@ -70,6 +73,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation(libs.play.services.maps)
+    implementation(libs.firebase.inappmessaging)
+
 
     // Testing dependencies
     testImplementation("junit:junit:4.13.2")

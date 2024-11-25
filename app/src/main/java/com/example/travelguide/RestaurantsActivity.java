@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -27,6 +28,11 @@ public class RestaurantsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!NetworkUtils.isNetworkAvailable(this)) {
+            Toast.makeText(this, "No internet connection and no cached data available.", Toast.LENGTH_SHORT).show();
+            finish(); // Exit the activity if no data is available
+            return;
+        }
         setContentView(R.layout.activity_restaurants);
 
         restaurantsTextView = findViewById(R.id.restaurantsTextView);
@@ -40,6 +46,8 @@ public class RestaurantsActivity extends AppCompatActivity {
             Log.e(TAG, "No documentId passed to RestaurantsActivity");
         }
     }
+
+
 
     private void fetchRestaurants(String destinationDocumentId) {
         db.collection("destinations").document(destinationDocumentId).collection("restaurants")

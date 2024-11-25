@@ -40,10 +40,33 @@ public class NightlifeActivity extends AppCompatActivity {
         Log.d(TAG, "Received cityName: " + cityName);
 
         if (cityName != null) {
-            fetchNightlife(cityName);
+            if (NetworkUtils.isNetworkAvailable(this)) {
+                // If online, fetch nightlife data directly
+                fetchNightlife(cityName);
+            } else {
+                // If offline, show loading page for 3 seconds
+                showLoadingPage(cityName);
+            }
         } else {
             Log.e(TAG, "City name is null.");
         }
+    }
+
+    /**
+     * Show the loading screen for 3 seconds if offline, and attempt to fetch nightlife data afterward.
+     */
+    private void showLoadingPage(final String cityName) {
+        progressBar.setVisibility(View.VISIBLE); // Show progress bar to simulate loading
+
+        // Simulate a 3-second loading time
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE); // Hide progress bar after 3 seconds
+                Toast.makeText(NightlifeActivity.this, "No internet connection. Showing cached data if available.", Toast.LENGTH_SHORT).show();
+                // Show a Toast or load cached data (if available) here
+            }
+        }, 3000); // Delay of 3 seconds
     }
 
     private void fetchNightlife(String cityName) {
