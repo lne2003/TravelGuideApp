@@ -66,6 +66,10 @@
         <activity android:name=".NightlifeActivity"/>
         <activity android:name=".OfflineActivity" />
 
+        <activity android:name=".ProfileSettingsActivity" />
+        <activity android:name=".PrivacySettingsActivity" />
+        <activity android:name=".NotificationSettingsActivity" />
+
 
 
     </application>

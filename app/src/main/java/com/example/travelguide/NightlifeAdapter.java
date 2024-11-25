@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class NightlifeAdapter extends RecyclerView.Adapter<NightlifeAdapter.ViewHolder> {
     private List<Business> nightlifeList;
@@ -108,12 +111,39 @@ public class NightlifeAdapter extends RecyclerView.Adapter<NightlifeAdapter.View
     public String getUnsplashUrlForBar(String name) {
         name = name.toLowerCase(); // Normalize for comparison
 
-        if (name.contains("night club") || name.contains("club")) {
-            return "https://images.unsplash.com/photo-people-dancing-inside-room-with-green-lights"; // Image by Antoine J.
-        } else if (name.contains("stage") || name.contains("live")) {
-            return "https://images.unsplash.com/photo-people-sitting-on-chair-watching-the-stage"; // Image by Shawn
+        // URLs for different categories
+        List<String> clubUrls = Arrays.asList(
+                "https://www.cherishtrip.com/wp-content/uploads/2018/09/nightlife-2.jpg",
+                "https://www.discoverhongkong.com/content/dam/dhk/intl/explore/nightlife/events/temple-street-960x720.jpg",
+                "https://www.nightlifeinternational.org/images/raxo_thumbs/amk/tb-w400-h300-crop-int-c17db24579aef3632c778c4dbee90c79.jpg"
+        );
+
+        List<String> stageUrls = Arrays.asList(
+                "https://www.eventbrite.com/blog/wp-content/uploads/2024/01/image4-min-2-768x432.png",
+                "https://c8.alamy.com/comp/BC8H4C/row-of-pubs-along-the-busy-temple-bar-nightlife-area-dublin-republic-BC8H4C.jpg",
+                "https://www.cherishtrip.com/wp-content/uploads/2018/09/nightlife-2.jpg"
+        );
+
+        List<String> barUrls = Arrays.asList(
+                "https://s3-media0.fl.yelpcdn.com/bphoto/OGxQa5IX4OFbFBjGtC0Evw/348s.jpg",
+                "https://www.discoverhongkong.com/content/dam/dhk/intl/explore/nightlife/rooftop-bars-in-hong-kong/rooftop-bars-in-hong-kong-960x720.jpg",
+                "https://www.spccs1.co.uk/ImageAssets/a1d78abe8e7347368c784a867af06354.JPG"
+        );
+
+        // Match category and return a random URL from the corresponding list
+        if (name.contains("nightlife") || name.contains("club")) {
+            return getRandomUrl(clubUrls);
+        } else if (name.contains("nightlife") || name.contains("bar")) {
+            return getRandomUrl(stageUrls);
         } else {
-            return "https://cyprus.wiz-guide.com/assets/modules/kat/places/202006/2344/images/det_04_helicon_roof_bar.jpg"; // Fallback random image
+            return getRandomUrl(barUrls);
         }
     }
+
+    // Helper method to get a random URL from a list
+    private String getRandomUrl(List<String> urls) {
+        Random random = new Random();
+        return urls.get(random.nextInt(urls.size()));
+    }
+
 }

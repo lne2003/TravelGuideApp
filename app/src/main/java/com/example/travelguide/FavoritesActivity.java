@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class FavoritesActivity extends AppCompatActivity {
+public class FavoritesActivity extends BaseActivity {
 
     private RecyclerView favoritesRecyclerView;
     private TextView noFavoritesTextView;
@@ -51,5 +51,9 @@ public class FavoritesActivity extends AppCompatActivity {
             noFavoritesTextView.setVisibility(View.VISIBLE);
             favoritesRecyclerView.setVisibility(View.GONE);
         }
+    }
+    @Override
+    protected int getSelectedMenuItemId() {
+        return R.id.nav_home; // Adjust based on the context
     }
 }

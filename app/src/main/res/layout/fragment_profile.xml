@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -35,7 +34,7 @@
                 android:id="@+id/welcomeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nicos P."
+                android:text="Welcome, User!"
                 android:textStyle="bold"
                 android:textSize="22sp"
                 android:textColor="@android:color/black" />
@@ -43,7 +42,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome Back!"
+                android:text="Glad to see you back!"
                 android:textSize="14sp"
                 android:textColor="@android:color/darker_gray" />
         </LinearLayout>
@@ -61,6 +60,7 @@
 
     <!-- Profile Settings Button -->
     <LinearLayout
+        android:id="@+id/profileSettingsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -98,6 +98,7 @@
 
     <!-- Privacy Settings Button -->
     <LinearLayout
+        android:id="@+id/privacySettingsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -136,6 +137,7 @@
 
     <!-- Notification Settings Button -->
     <LinearLayout
+        android:id="@+id/notificationSettingsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
