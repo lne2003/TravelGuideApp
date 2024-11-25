@@ -24,6 +24,16 @@
         android:visibility="gone"
         android:layout_gravity="center" />
 
+    <Button
+        android:id="@+id/seeAllOnMapButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See All on Map"
+        android:backgroundTint="#00796B"
+        android:textColor="#FFFFFF"
+        android:layout_margin="8dp" />
+
+
     <!-- RecyclerView to display the favorite restaurants -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"

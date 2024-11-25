@@ -15,6 +15,15 @@
         android:padding="16dp"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/seeAllOnMapButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See All on Map"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#00796B"
+        android:textColor="#FFFFFF" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"
         android:layout_width="match_parent"
