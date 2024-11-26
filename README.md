@@ -1,3 +1,9 @@
+# Team Members
+
+- **Stylianos Panayiotou**
+- **Eleni Loizou**
+- **Chrysanthi Theocharide**
+  
 # **TRIP HUNTER: YOUR PERSONALIZED TRAVEL GUIDE**
 
 Trip Hunter is an all-in-one travel companion that helps you discover, explore, and enjoy your journeys with ease. From finding top-rated restaurants and nightlife to caching data for offline access and leaving reviews, Trip Hunter is your ultimate travel buddy.
