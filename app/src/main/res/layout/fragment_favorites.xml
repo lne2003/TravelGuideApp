@@ -4,6 +4,19 @@
     android:orientation="vertical"
     android:background="#B4EBEB"> <!-- Add a solid background color -->
 
+    <!-- Title Text indicating we're in the Favorites section -->
+    <TextView
+        android:id="@+id/favoritesTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Favorites"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <!-- TextView to show if no favorites are found -->
     <TextView
         android:id="@+id/noFavoritesTextView"
         android:layout_width="match_parent"
@@ -15,17 +28,22 @@
         android:padding="16dp"
         android:visibility="gone" />
 
-    <Button
-        android:id="@+id/seeAllOnMapButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="See All on Map"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#00796B"
-        android:textColor="#FFFFFF" />
-
+    <!-- RecyclerView to display the favorite restaurants -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- See All on Map Button at the bottom with smaller width and height -->
+    <Button
+        android:id="@+id/seeAllOnMapButton"
+        android:layout_width="wrap_content"
+    android:layout_height="48dp"
+    android:text="See All on Map"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
+    android:backgroundTint="#00796B"
+    android:textColor="#FFFFFF"
+    android:layout_gravity="center" />
 </LinearLayout>
