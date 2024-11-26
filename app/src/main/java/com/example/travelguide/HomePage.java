@@ -9,21 +9,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.inappmessaging.FirebaseInAppMessaging;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomePage extends AppCompatActivity {
+
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Check for network availability
         if (!NetworkUtils.isNetworkAvailable(this)) {
             Intent offlineIntent = new Intent(this, OfflineActivity.class);
             startActivity(offlineIntent);
@@ -31,7 +33,15 @@ public class HomePage extends AppCompatActivity {
             return;
         }
 
+        // Initialize Firebase Analytics
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        // Log the homepage_open event
+        Bundle bundle = new Bundle();
+        bundle.putString("screen_name", "HomePage");
+        firebaseAnalytics.logEvent("homepage_open", bundle);
+
+        // Fetch Firebase Cloud Messaging token
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
@@ -43,18 +53,15 @@ public class HomePage extends AppCompatActivity {
 
                         // Get the FCM registration token
                         String token = task.getResult();
-
-                        // TODO: do smth when opening the push notification
-                        // for now we just toast the firebase cloud messaging registration code
-                        String msg = "FCM Registration token: " + token;
-                        Log.d(TAG, msg);
-//                        Toast.makeText(HomePage.this, msg, Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "FCM Registration Token: " + token);
                     }
                 });
 
+        // Set the content view for HomePage
         setContentView(R.layout.homepage);
 
-
+        // Enable Firebase In-App Messaging
+        FirebaseInAppMessaging.getInstance().setAutomaticDataCollectionEnabled(true);
 
         // Set up the "Let's Explore" button
         Button getStartedButton = findViewById(R.id.getStartedButton);
@@ -72,6 +79,4 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
-
-
 }
